@@ -3,4 +3,4 @@ scikit-learn
 python-dotenv
 streamlit-balloons==0.1.0
 scikit-learn python-dotenv streamlit
-streamlit-balloons  
+
