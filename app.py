@@ -27,7 +27,7 @@ def display_results():
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Educational Resources", "Government Schemes"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Educational Resources", "Government Schemes", "Contact Us"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
@@ -82,16 +82,20 @@ def main():
     elif menu_selection == "Result":
         display_results()
 
+    elif menu_selection == "About":
+        st.title("About")
+        st.write("In agriculture planning and decision making, predicting crop outcomes is vital. Using machine learning tools, like the Random Forest classifier has proven effective in forecasting crop yields based on data and relevant environmental factors. This study delves into how Random Forest can be used in crop prediction by analyzing datasets that encompass weather patterns, soil quality and past crop yields. The model's capability to handle relationships between variables makes it well suited for capturing the influences on crop growth. Moreover, a user-friendly website has been created specifically for farmers, incorporating the model to offer time and localized forecasts of crop yields. This platform aims to equip farmers with insights for making informed decisions to enhance productivity and sustainability.")
+
+    elif menu_selection == "Prototype":
+        st.title("Prototype")
+        st.write("Our prototype for this project has been developed using Tinkercad, an online platform for 3D modeling and simulation. Tinkercad allows us to simulate different environmental conditions and analyze their impact on crop growth and yield predictions. The prototype includes virtual sensors and actuators to replicate real-world scenarios, providing a realistic testing environment for our predictive models.")
+
     elif menu_selection == "Contact Us":
         st.title("Contact Us")
         st.write("For any inquiries or support, please feel free to reach out to us:")
 
         st.markdown("- **Email:** [support@croppredictionapp.com](mailto:support@croppredictionapp.com)")
         st.markdown("- **Phone:** +91 86391-50020")
-
-    elif menu_selection == "About":
-        st.title("About")
-        st.write("In agriculture planning and decision making, predicting crop outcomes is vital. Using machine learning tools, like the Random Forest classifier has proven effective in forecasting crop yields based on data and relevant environmental factors. This study delves into how Random Forest can be used in crop prediction by analyzing datasets that encompass weather patterns, soil quality and past crop yields. The model's capability to handle relationships between variables makes it well suited for capturing the influences on crop growth. Moreover, a user-friendly website has been created specifically for farmers, incorporating the model to offer time and localized forecasts of crop yields. This platform aims to equip farmers with insights for making informed decisions to enhance productivity and sustainability.")
 
 def load_crop_instructions():
     crop_instructions = {
