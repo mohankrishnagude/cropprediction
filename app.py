@@ -49,7 +49,7 @@ def main():
         st.write("Integrate market prices and trends for various crops to help farmers decide on the most profitable crops to grow.")
         st.write("Provide farmers with current market prices and trends for different crops. This information helps them make informed decisions about which crops to grow for maximum profitability.")
 
-        api_key = "https://api.ers.usda.gov/data/fruit-vegetable-prices"  # Replace with your actual USDA ERS API key
+        api_key = "5vhsIkPyW7gKaQoCbC81U3xF94rDowFK18BHZirS"  # Replace with your actual USDA ERS API key
         market_data = get_market_prices(api_key)
         
         if market_data and "error" not in market_data:
