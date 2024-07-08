@@ -1,5 +1,29 @@
 import streamlit as st
 
+# Function to display results including images
+def display_results():
+    st.title("Application Results")
+    st.write("Step 2: Application Results")
+
+    # Images to display
+    image_urls = [
+        "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465729/iotjwo8hg3mbpgl1v4we.png",
+        "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465808/bgl71lq0vmdbpnn3aeem.png",
+        "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465842/k0mxtqt9ldcapovhinui.png",
+        "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465875/rzeuysjhufzqds6ivuef.png"
+    ]
+
+    # Display images in two rows
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image(image_urls[0], use_column_width=True)
+        st.image(image_urls[1], use_column_width=True)
+
+    with col2:
+        st.image(image_urls[2], use_column_width=True)
+        st.image(image_urls[3], use_column_width=True)
+
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
@@ -54,6 +78,9 @@ def main():
         
         # Button linking to government schemes URL
         st.markdown("[Click here](https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2002012) to view government schemes.")
+
+    elif menu_selection == "Result":
+        display_results()
 
     elif menu_selection == "Contact Us":
         st.title("Contact Us")
