@@ -27,7 +27,7 @@ def get_market_prices(api_key):
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Market Prices"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Educational Resources", "Market Prices"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
@@ -44,20 +44,32 @@ def main():
 
             st.write(f"Predicted Crop: {predicted_crop}")
 
+    elif menu_selection == "Educational Resources":
+        st.title("Educational Resources")
+        st.write("Explore learning resources related to the future of farming.")
+        st.write("This website provides various educational resources for farming and agriculture.")
+        
+        # Link to external educational resources
+        st.markdown("[Click here](https://future-of-farming.colab.newscientist.com/resources) to access the learning resources.")
+
     elif menu_selection == "Market Prices":
         st.title("Market Prices and Trends")
         st.write("Integrate market prices and trends for various crops to help farmers decide on the most profitable crops to grow.")
         st.write("Provide farmers with current market prices and trends for different crops. This information helps them make informed decisions about which crops to grow for maximum profitability.")
 
-        api_key = "5vhsIkPyW7gKaQoCbC81U3xF94rDowFK18BHZirS"  # Replace with your actual USDA ERS API key
-        market_data = get_market_prices(api_key)
+        api_key = st.text_input("Enter your USDA ERS API key")
         
-        if market_data and "error" not in market_data:
-            st.write(market_data)
-        elif market_data and "error" in market_data:
-            st.error(f"Failed to fetch market prices. Error message: {market_data['error']['message']}")
+        if api_key:
+            market_data = get_market_prices(api_key)
+            
+            if market_data and "error" not in market_data:
+                st.write(market_data)
+            elif market_data and "error" in market_data:
+                st.error(f"Failed to fetch market prices. Error message: {market_data['error']['message']}")
+            else:
+                st.error("Failed to fetch market prices. No data returned.")
         else:
-            st.error("Failed to fetch market prices. No data returned.")
+            st.warning("Please enter your USDA ERS API key above.")
 
 if __name__ == "__main__":
     main()
