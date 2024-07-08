@@ -1,9 +1,5 @@
 import streamlit as st
 import requests
-import pyttsx3  # Import pyttsx3 for text-to-speech
-
-# Initialize the text-to-speech engine
-engine = pyttsx3.init()
 
 # Function to get market prices from USDA ERS API
 def get_market_prices(api_key):
@@ -28,11 +24,6 @@ def get_market_prices(api_key):
         st.error(f"Error fetching market prices: {e}")
         return None
 
-# Function to speak out text using pyttsx3
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
-
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
@@ -52,9 +43,6 @@ def main():
             predicted_crop = "Wheat"  # Example prediction
 
             st.write(f"Predicted Crop: {predicted_crop}")
-
-            # Speak the predicted crop name
-            speak(f"The predicted crop is {predicted_crop}")
 
     elif menu_selection == "Educational Resources":
         st.title("Educational Resources")
