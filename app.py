@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
-from balloons import speak  # Import the speak function from balloons
+import pyttsx3  # Import pyttsx3 for text-to-speech
+
+# Initialize the text-to-speech engine
+engine = pyttsx3.init()
 
 # Function to get market prices from USDA ERS API
 def get_market_prices(api_key):
@@ -24,6 +27,11 @@ def get_market_prices(api_key):
     except Exception as e:
         st.error(f"Error fetching market prices: {e}")
         return None
+
+# Function to speak out text using pyttsx3
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
 
 # Main function to display the app
 def main():
