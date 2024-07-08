@@ -55,6 +55,13 @@ def main():
         # Button linking to government schemes URL
         st.markdown("[Click here](https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2002012) to view government schemes.")
 
+    elif menu_selection == "Contact Us":
+        st.title("Contact Us")
+        st.write("For any inquiries or support, please feel free to reach out to us:")
+
+        st.markdown("- **Email:** [support@croppredictionapp.com](mailto:support@croppredictionapp.com)")
+        st.markdown("- **Phone:** +91 86391-50020")
+
 def load_crop_instructions():
     crop_instructions = {
         'Wheat': 'Harvesting season: March to June. Fertilizers: Nitrogen-based fertilizers.',
