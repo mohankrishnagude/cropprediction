@@ -2,9 +2,8 @@ import streamlit as st
 import requests
 
 # Function to get market prices from USDA ERS API
-def get_market_prices():
-    api_key = "5vhsIkPyW7gKaQoCbC81U3xF94rDowFK18BHZirS"  # Replace with your actual API key
-    url = "https://api.ers.usda.gov/data/fv-price-forecast"
+def get_market_prices(api_key):
+    url = "https://api.ers.usda.gov/data/fruit-vegetable-market-prices"
     params = {
         "api_key": api_key,
         "q": "apple",  # Example query for apple, adjust as needed
@@ -50,9 +49,15 @@ def main():
         st.write("Integrate market prices and trends for various crops to help farmers decide on the most profitable crops to grow.")
         st.write("Provide farmers with current market prices and trends for different crops. This information helps them make informed decisions about which crops to grow for maximum profitability.")
 
-        market_data = get_market_prices()
-        if market_data:
+        api_key = "5vhsIkPyW7gKaQoCbC81U3xF94rDowFK18BHZirS"  # Replace with your actual USDA ERS API key
+        market_data = get_market_prices(api_key)
+        
+        if market_data and "error" not in market_data:
             st.write(market_data)
+        elif market_data and "error" in market_data:
+            st.error(f"Failed to fetch market prices. Error message: {market_data['error']['message']}")
+        else:
+            st.error("Failed to fetch market prices. No data returned.")
 
 if __name__ == "__main__":
     main()
