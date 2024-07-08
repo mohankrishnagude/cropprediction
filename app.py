@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import requests
-import json
 import os
 import pickle
 from dotenv import load_dotenv
@@ -9,20 +8,11 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Function to load the model
+# Function to load the model (stub implementation for example)
 def load_model(model_file):
-    try:
-        with open(model_file, 'rb') as file:
-            model = pickle.load(file)
-        return model
-    except FileNotFoundError:
-        st.error(f"Model file '{model_file}' not found.")
-        st.stop()
-    except Exception as e:
-        st.error(f"Error loading the model: {e}")
-        st.stop()
+    return None  # Replace with your actual model loading logic
 
-# Function to load crop instructions
+# Function to load crop instructions (stub implementation for example)
 def load_crop_instructions():
     crop_instructions = {
         'Wheat': 'Harvesting season: March to June. Fertilizers: Nitrogen-based fertilizers.',
@@ -47,6 +37,7 @@ def get_market_prices(api_key):
             return response.json()
         else:
             st.error(f"Failed to fetch market prices. Status code: {response.status_code}")
+            st.error(f"Error message: {response.text}")  # Log the full response content
             return None
 
     except Exception as e:
