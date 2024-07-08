@@ -1,6 +1,7 @@
-import pickle
 import streamlit as st
 import pandas as pd
+import requests
+import json
 
 # Function to load the model
 def load_model(model_file):
@@ -15,45 +16,35 @@ def load_model(model_file):
         st.error(f"Error loading the model: {e}")
         st.stop()
 
-# Function to display prediction form and outcome
+# Function to load crop instructions
+def load_crop_instructions():
+    crop_instructions = {
+        'Wheat': 'Harvesting season: March to June. Fertilizers: Nitrogen-based fertilizers.',
+        'Rice': 'Harvesting season: July to October. Fertilizers: Potassium-rich fertilizers.',
+        # Add other crops here...
+    }
+    return crop_instructions
+
+# Function to get market prices from the API
+def get_market_prices():
+    url = "https://my.farm.bot/api/farmware_envs"
+    headers = {
+        "Authorization": "bearer eyJ....4cw",
+        "Accept": "application/json"
+    }
+    body = {}
+    response = requests.post(url, headers=headers, json=body)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        st.error(f"Failed to fetch market prices. Status code: {response.status_code}")
+        return None
+
+# Main function to display the app
 def main():
-    # Set page background and title styling
-    page_bg_img = '''
-        <style>
-            body {
-                background-color: #f0f0f0; /* Light grey background */
-            }
-            .stApp {
-                background: rgba(255, 255, 255, 0.8);
-                padding: 2rem;
-                border-radius: 10px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            }
-            .stSidebar {
-                position: fixed;
-                left: 0;
-                width: 15%;
-                height: 100%;
-                padding: 2rem;
-                background-color: #ffffff; /* White background for sidebar */
-                border-right: 1px solid #e0e0e0; /* Light grey border on the right */
-            }
-            .stSidebar a {
-                display: block;
-                margin-bottom: 1rem;
-                text-decoration: none;
-                color: #333333; /* Dark grey text */
-                font-weight: bold;
-            }
-            .stSidebar a:hover {
-                color: #007bff; /* Blue text on hover */
-            }
-        </style>
-    '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
-    
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Weather Forecast", "Soil Health", "Irrigation Scheduling", "Pest Management", "Market Prices", "Sustainable Practices", "Financial Assistance", "Community Forum", "Educational Resources", "Crop Insurance", "Farm Management", "Success Stories"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
@@ -90,21 +81,22 @@ def main():
             else:
                 st.write("Predicted Crop:", predicted_crop[0])
 
-    elif menu_selection == "About":
-        st.title("About")
-        st.write("This is the About page.")
+            # Display instructions based on predicted crop
+            crop_instructions = load_crop_instructions()
+            if predicted_crop[0] in crop_instructions:
+                st.subheader("Instructions for Farmers:")
+                st.write(crop_instructions[predicted_crop[0]])
+            else:
+                st.warning("Instructions not available for this crop.")
 
-    elif menu_selection == "Prototype":
-        st.title("Prototype")
-        st.write("This is the Prototype page.")
+    elif menu_selection == "Market Prices":
+        st.title("Market Prices and Trends")
+        st.write("Integrate market prices and trends for various crops to help farmers decide on the most profitable crops to grow.")
+        st.write("Provide farmers with current market prices and trends for different crops. This information helps them make informed decisions about which crops to grow for maximum profitability.")
 
-    elif menu_selection == "Result":
-        st.title("Result")
-        st.write("This is the Result page.")
-
-    elif menu_selection == "Contact Us":
-        st.title("Contact Us")
-        st.write("This is the Contact Us page.")
+        market_prices = get_market_prices()
+        if market_prices:
+            st.write(market_prices)
 
 if __name__ == "__main__":
     main()
