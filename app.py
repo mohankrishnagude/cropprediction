@@ -14,12 +14,12 @@ def main():
         moisture = st.number_input("Enter Moisture (%)", min_value=0, max_value=100, value=50, step=1, format="%d")
         light_intensity = st.number_input("Enter Light Intensity", min_value=0, max_value=5000, value=2500, step=1, format="%d")
 
+        # Language selection (for demonstration purposes), moved above the predict button
+        language = st.selectbox("Select Language", ["English", "Hindi", "Tamil", "Telugu"])
+
         if st.button("Predict"):
             # Replace with actual prediction logic
             predicted_crop = ["Wheat"]  # Example prediction list
-
-            # Language selection (for demonstration purposes)
-            language = st.selectbox("Select Language", ["English", "Hindi", "Tamil", "Telugu"])
 
             # Display predicted crop in selected language
             if language == "Hindi":
