@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import json
+import pickle
 
 # Function to load the model
 def load_model(model_file):
