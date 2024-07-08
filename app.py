@@ -27,7 +27,7 @@ def get_market_prices(api_key):
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Educational Resources", "Market Prices"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Educational Resources", "Government Schemes", "Market Prices"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
@@ -51,6 +51,14 @@ def main():
         
         # Link to external educational resources
         st.markdown("[Click here](https://future-of-farming.colab.newscientist.com/resources) to access the learning resources.")
+
+    elif menu_selection == "Government Schemes":
+        st.title("Government Schemes")
+        st.write("Discover government schemes related to agriculture and farming.")
+        st.write("These schemes aim to support farmers and promote agricultural development.")
+
+        # Button linking to government schemes URL
+        st.markdown("[Click here](https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2002012) to view government schemes.")
 
     elif menu_selection == "Market Prices":
         st.title("Market Prices and Trends")
