@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from balloons import speak  # Import the speak function from balloons
 
 # Function to get market prices from USDA ERS API
 def get_market_prices(api_key):
@@ -43,6 +44,9 @@ def main():
             predicted_crop = "Wheat"  # Example prediction
 
             st.write(f"Predicted Crop: {predicted_crop}")
+
+            # Speak the predicted crop name
+            speak(f"The predicted crop is {predicted_crop}")
 
     elif menu_selection == "Educational Resources":
         st.title("Educational Resources")
