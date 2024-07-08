@@ -2,28 +2,6 @@ import streamlit as st
 import requests
 
 # Function to get market prices from USDA ERS API
-def get_market_prices(api_key):
-    url = "https://api.ers.usda.gov/data/fruit-vegetable-prices"
-    params = {
-        "api_key": api_key,
-        "q": "apple",  # Example query for apple, adjust as needed
-        "format": "json"
-    }
-
-    try:
-        response = requests.get(url, params=params)
-
-        if response.status_code == 200:
-            return response.json()
-        else:
-            st.error(f"Failed to fetch market prices. Status code: {response.status_code}")
-            st.error(f"Error message: {response.text}")  # Log the full response content
-            return None
-
-    except Exception as e:
-        st.error(f"Error fetching market prices: {e}")
-        return None
-
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
@@ -65,19 +43,9 @@ def main():
         st.write("Integrate market prices and trends for various crops to help farmers decide on the most profitable crops to grow.")
         st.write("Provide farmers with current market prices and trends for different crops. This information helps them make informed decisions about which crops to grow for maximum profitability.")
 
-        api_key = st.text_input("Enter your USDA ERS API key")
+
         
-        if api_key:
-            market_data = get_market_prices(api_key)
-            
-            if market_data and "error" not in market_data:
-                st.write(market_data)
-            elif market_data and "error" in market_data:
-                st.error(f"Failed to fetch market prices. Error message: {market_data['error']['message']}")
-            else:
-                st.error("Failed to fetch market prices. No data returned.")
-        else:
-            st.warning("Please enter your USDA ERS API key above.")
+        
 
 if __name__ == "__main__":
     main()
