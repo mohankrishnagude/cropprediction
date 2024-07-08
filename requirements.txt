@@ -1,6 +1,6 @@
---upgrade pip
+
 scikit-learn
-python-dotenv
-streamlit-balloons==0.1.0
+requests
+pyttsx3
 
 
