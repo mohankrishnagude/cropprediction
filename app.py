@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import json
 import os
+import pickle
 from dotenv import load_dotenv
 
 # Load environment variables
