@@ -27,7 +27,7 @@ def display_results():
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Educational Resources", "Government Schemes", "Contact Us"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Educational Resources", "Government Schemes", "Crop Loans", "Contact Us"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
@@ -78,6 +78,14 @@ def main():
         
         # Button linking to government schemes URL
         st.markdown("[Click here](https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2002012) to view government schemes.")
+
+    elif menu_selection == "Crop Loans":
+        st.title("Crop Loans")
+        st.write("Learn more about choosing the right type of agricultural loans for your farming needs.")
+        st.write("This section provides insights into different types of crop loans and their benefits.")
+        
+        # Button linking to crop loans URL
+        st.markdown("[Click here to learn more about Crop Loans](https://bankofmaharashtra.in/blogs/agriculture-loans-choosing-right-type)")
 
     elif menu_selection == "Result":
         display_results()
