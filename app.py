@@ -24,10 +24,20 @@ def display_results():
         st.image(image_urls[2], use_column_width=True)
         st.image(image_urls[3], use_column_width=True)
 
+    # Display instructions using alerts
+    st.subheader("Instructions for Farmers:")
+    crop_instructions = load_crop_instructions()
+    predicted_crop = "Wheat"  # Example predicted crop (replace with actual logic)
+    
+    if predicted_crop in crop_instructions:
+        st.warning(crop_instructions[predicted_crop])
+    else:
+        st.error("Instructions not available for this crop.")
+
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Educational Resources", "Government Schemes", "Crop Loans", "Contact Us"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Crop Loans", "Educational Resources", "Government Schemes", "Contact Us"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
@@ -43,25 +53,20 @@ def main():
 
         if st.button("Predict"):
             # Replace with actual prediction logic
-            predicted_crop = ["Wheat"]  # Example prediction list
+            predicted_crop = "Wheat"  # Example prediction list
 
             # Display predicted crop in selected language
             if language == "Hindi":
-                st.write("पूर्वानुमानित फसल:", predicted_crop[0])
+                st.write("पूर्वानुमानित फसल:", predicted_crop)
             elif language == "Tamil":
-                st.write("கட்டுரையில் விரும்பப்படுகிறது:", predicted_crop[0])
+                st.write("கட்டுரையில் விரும்பப்படுகிறது:", predicted_crop)
             elif language == "Telugu":
-                st.write("అంగారం బాహ్యం:", predicted_crop[0])
+                st.write("అంగారం బాహ్యం:", predicted_crop)
             else:
-                st.write("Predicted Crop:", predicted_crop[0])
+                st.write("Predicted Crop:", predicted_crop)
 
             # Display instructions based on predicted crop
-            crop_instructions = load_crop_instructions()
-            if predicted_crop[0] in crop_instructions:
-                st.subheader("Instructions for Farmers:")
-                st.write(crop_instructions[predicted_crop[0]])
-            else:
-                st.warning("Instructions not available for this crop.")
+            display_results()
 
     elif menu_selection == "Educational Resources":
         st.title("Educational Resources")
@@ -78,25 +83,17 @@ def main():
         
         # Button linking to government schemes URL
         st.markdown("[Click here](https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2002012) to view government schemes.")
-
+    
     elif menu_selection == "Crop Loans":
         st.title("Crop Loans")
-        st.write("Learn more about choosing the right type of agricultural loans for your farming needs.")
-        st.write("This section provides insights into different types of crop loans and their benefits.")
+        st.write("Learn about different types of agricultural loans to support farming needs.")
+        st.write("Understanding the right type of loan can help farmers manage expenses and improve productivity.")
         
-        # Button linking to crop loans URL
-        st.markdown("[Click here to learn more about Crop Loans](https://bankofmaharashtra.in/blogs/agriculture-loans-choosing-right-type)")
+        # Button linking to agriculture loans article
+        st.markdown("[Click here](https://bankofmaharashtra.in/blogs/agriculture-loans-choosing-right-type) to learn more about agriculture loans.")
 
     elif menu_selection == "Result":
         display_results()
-
-    elif menu_selection == "About":
-        st.title("About")
-        st.write("In agriculture planning and decision making, predicting crop outcomes is vital. Using machine learning tools, like the Random Forest classifier has proven effective in forecasting crop yields based on data and relevant environmental factors. This study delves into how Random Forest can be used in crop prediction by analyzing datasets that encompass weather patterns, soil quality and past crop yields. The model's capability to handle relationships between variables makes it well suited for capturing the influences on crop growth. Moreover, a user-friendly website has been created specifically for farmers, incorporating the model to offer time and localized forecasts of crop yields. This platform aims to equip farmers with insights for making informed decisions to enhance productivity and sustainability.")
-
-    elif menu_selection == "Prototype":
-        st.title("Prototype")
-        st.write("Our prototype for this project has been developed using Tinkercad, an online platform for 3D modeling and simulation. Tinkercad allows us to simulate different environmental conditions and analyze their impact on crop growth and yield predictions. The prototype includes virtual sensors and actuators to replicate real-world scenarios, providing a realistic testing environment for our predictive models.")
 
     elif menu_selection == "Contact Us":
         st.title("Contact Us")
