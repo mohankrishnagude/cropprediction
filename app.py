@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import requests
 import json
-import pickle
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Function to load the model
 def load_model(model_file):
@@ -26,32 +30,38 @@ def load_crop_instructions():
     }
     return crop_instructions
 
-# Function to get market prices from the API
-def get_market_prices():
-    url = "https://my.farm.bot/api/farmware_envs"
-    headers = {
-        "Authorization": "bearer eyJ....4cw",
-        "Accept": "application/json"
+# Function to get market prices from USDA ERS API
+def get_market_prices(api_key):
+    url = "https://api.ers.usda.gov/data/fruit-vegetable-prices"
+    params = {
+        "api_key": api_key,
+        "q": "apple",  # Example query for apple, adjust as needed
+        "format": "json"
     }
-    body = {}
-    response = requests.post(url, headers=headers, json=body)
 
-    if response.status_code == 200:
-        return response.json()
-    else:
-        st.error(f"Failed to fetch market prices. Status code: {response.status_code}")
+    try:
+        response = requests.get(url, params=params)
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            st.error(f"Failed to fetch market prices. Status code: {response.status_code}")
+            return None
+
+    except Exception as e:
+        st.error(f"Error fetching market prices: {e}")
         return None
 
 # Main function to display the app
 def main():
     st.sidebar.title("Navigation")
-    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Weather Forecast", "Soil Health", "Irrigation Scheduling", "Pest Management", "Market Prices", "Sustainable Practices", "Financial Assistance", "Community Forum", "Educational Resources", "Crop Insurance", "Farm Management", "Success Stories"])
+    menu_selection = st.sidebar.radio("", ["Home", "About", "Prototype", "Result", "Contact Us", "Market Prices"])
 
     if menu_selection == "Home":
         st.title("Crop Prediction App")
         st.write("Enter environmental factors to predict suitable crop")
 
-        # Load the model
+        # Load the model (replace with your actual model loading logic)
         rf_classifier = load_model('rf_classifier.pkl')
 
         # Input fields for user to enter values
@@ -95,9 +105,15 @@ def main():
         st.write("Integrate market prices and trends for various crops to help farmers decide on the most profitable crops to grow.")
         st.write("Provide farmers with current market prices and trends for different crops. This information helps them make informed decisions about which crops to grow for maximum profitability.")
 
-        market_prices = get_market_prices()
-        if market_prices:
-            st.write(market_prices)
+        # Get API key from environment variables
+        api_key = os.getenv('USDA_ERS_API_KEY')
+
+        if api_key:
+            market_data = get_market_prices(api_key)
+            if market_data:
+                st.write(market_data)
+        else:
+            st.error("USDA ERS API key not found. Please check your .env file.")
 
 if __name__ == "__main__":
     main()
