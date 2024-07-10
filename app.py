@@ -41,10 +41,10 @@ def main():
         st.title("Crop Prediction App")
         st.write("Enter environmental factors to predict suitable crop")
 
-        # Input fields for user to enter values (example placeholders)
-        humidity = st.number_input("Enter Humidity (%)", min_value=0, max_value=100, value=50, step=1, format="%d")
-        moisture = st.number_input("Enter Moisture (%)", min_value=0, max_value=100, value=50, step=1, format="%d")
-        light_intensity = st.number_input("Enter Light Intensity", min_value=0, max_value=5000, value=2500, step=1, format="%d")
+        # Input fields with default values set to 0
+        humidity = st.number_input("Enter Humidity (%)", min_value=0, max_value=100, value=0, step=1, format="%d")
+        moisture = st.number_input("Enter Moisture (%)", min_value=0, max_value=100, value=0, step=1, format="%d")
+        light_intensity = st.number_input("Enter Light Intensity", min_value=0, max_value=5000, value=0, step=1, format="%d")
 
         # Language selection (for demonstration purposes), moved above the predict button
         language = st.selectbox("Select Language", ["English", "Hindi", "Tamil", "Telugu"])
