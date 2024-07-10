@@ -3,9 +3,17 @@ import streamlit as st
 # Function to display results including images
 def display_results():
     st.title("Application Results")
+    st.write("Step 1: Hardware Connections")
+    
+    # Image for hardware connections
+    hardware_image_url = "https://res.cloudinary.com/dutz2aydx/image/upload/v1720634630/ds8sgwb7ngwh39ipmrxj.jpg"
+    
+    # Display hardware connections image
+    st.image(hardware_image_url, use_column_width=True)
+    
     st.write("Step 2: Application Results")
 
-    # Images to display
+    # Existing images to display
     image_urls = [
         "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465729/iotjwo8hg3mbpgl1v4we.png",
         "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465808/bgl71lq0vmdbpnn3aeem.png",
@@ -13,7 +21,7 @@ def display_results():
         "https://res.cloudinary.com/dutz2aydx/image/upload/v1720465875/rzeuysjhufzqds6ivuef.png"
     ]
 
-    # Display images in two rows
+    # Display existing images in two rows
     col1, col2 = st.columns(2)
 
     with col1:
