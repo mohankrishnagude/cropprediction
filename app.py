@@ -154,7 +154,10 @@ def main():
         
         # Button linking to crop loans URL
         st.markdown("[Click here to learn more about Crop Loans](https://bankofmaharashtra.in/blogs/agriculture-loans-choosing-right-type)")
-
+        st.markdown("[Click here to apply for a loan](https://www.bankofbaroda.in/banking-mantra/loans-borrowings/articles/how-to-get-an-agriculture-loan)")
+        
+        # Link to see how many banks provide crop loans
+        st.markdown("[Click here to see how many banks provide crop loans](https://www.bankbazaar.com/personal-loan/crop-loan.html)")
     elif menu_selection == "Result":
         display_results()
 
