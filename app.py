@@ -96,8 +96,48 @@ def main():
         st.write("Explore learning resources related to the future of farming.")
         st.write("This website provides various educational resources for farming and agriculture.")
         
-        # Link to external educational resources
-        st.markdown("[Click here](https://future-of-farming.colab.newscientist.com/resources) to access the learning resources.")
+        # List of YouTube video links
+        youtube_videos = [
+            "https://www.youtube.com/watch?v=2tgitJwyRXE",
+            "https://www.youtube.com/watch?v=u97eldevr2g&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG",
+            "https://www.youtube.com/watch?v=4dDOzYd01Oc&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=2",
+            "https://www.youtube.com/watch?v=Lj5jtYO4twQ&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=3",
+            "https://www.youtube.com/watch?v=Udv1We1LE7k&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=4",
+            "https://www.youtube.com/watch?v=PjJIvYc7vHo&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=5",
+            "https://www.youtube.com/watch?v=92Ey4MbjXO4&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=6",
+            "https://www.youtube.com/watch?v=HO7r663ECkA&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=7",
+            "https://www.youtube.com/watch?v=MYpUX8qffH4&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=8",
+            "https://www.youtube.com/watch?v=cpGpUy6iw30&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=9",
+            "https://www.youtube.com/watch?v=srxHs-8Nv3o&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=10",
+            "https://www.youtube.com/watch?v=QxK4YbPrWXk&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=11",
+            "https://www.youtube.com/watch?v=65Djs709ZwU&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=12",
+            "https://www.youtube.com/watch?v=mya51C2cGwI&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=13",
+            "https://www.youtube.com/watch?v=opCjbRYe6aw&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=14",
+            "https://www.youtube.com/watch?v=-c6OuXMSWeE&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=15",
+            "https://www.youtube.com/watch?v=DiNQW6Q35Kg&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=16",
+            "https://www.youtube.com/watch?v=vUSuyDY0NUA&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=17",
+            "https://www.youtube.com/watch?v=_ZhtIqeRmuw&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=18",
+            "https://www.youtube.com/watch?v=7vbGoceUUgs&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=19",
+            "https://www.youtube.com/watch?v=Kytp4Uyaj6E&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=20",
+            "https://www.youtube.com/watch?v=R8z4T8EhFU0&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=21",
+            "https://www.youtube.com/watch?v=XTfnWvfIP8o&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=22",
+            "https://www.youtube.com/watch?v=leA9WWUXwdg&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=23",
+            "https://www.youtube.com/watch?v=8NLEdLrZDoI&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=24",
+            "https://www.youtube.com/watch?v=RCqf4NzdbFI&list=PL3PuCslSVB8tgJNr0kVAODvFN0ncbQVNG&index=25"
+        ]
+
+        # Display YouTube videos in rows of three
+        for i in range(0, len(youtube_videos), 3):
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                if i < len(youtube_videos):
+                    st.video(youtube_videos[i])
+            with col2:
+                if i + 1 < len(youtube_videos):
+                    st.video(youtube_videos[i + 1])
+            with col3:
+                if i + 2 < len(youtube_videos):
+                    st.video(youtube_videos[i + 2])
 
     elif menu_selection == "Government Schemes":
         st.title("Government Schemes")
@@ -114,12 +154,6 @@ def main():
         
         # Button linking to crop loans URL
         st.markdown("[Click here to learn more about Crop Loans](https://bankofmaharashtra.in/blogs/agriculture-loans-choosing-right-type)")
-        
-        # Link to apply for a loan
-        st.markdown("[Click here to apply for a loan](https://www.bankofbaroda.in/banking-mantra/loans-borrowings/articles/how-to-get-an-agriculture-loan)")
-        
-        # Link to see how many banks provide crop loans
-        st.markdown("[Click here to see how many banks provide crop loans](https://www.bankbazaar.com/personal-loan/crop-loan.html)")
 
     elif menu_selection == "Result":
         display_results()
