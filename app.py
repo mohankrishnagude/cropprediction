@@ -1,4 +1,23 @@
 import streamlit as st
+import joblib
+import pickle
+import numpy as np
+
+# Function to load the pre-trained model
+def load_model(model_file):
+    try:
+        with open(model_file, 'rb') as file:
+            model = pickle.load(file)
+        return model
+    except FileNotFoundError:
+        st.error(f"Model file '{model_file}' not found.")
+        st.stop()
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+        st.stop()
+
+# Load your model
+model = load_model('rf_classifier.pkl')
 
 # Function to display results including images
 def display_results():
@@ -50,8 +69,9 @@ def main():
         language = st.selectbox("Select Language", ["English", "Hindi", "Tamil", "Telugu"])
 
         if st.button("Predict"):
-            # Replace with actual prediction logic
-            predicted_crop = ["Wheat"]  # Example prediction list
+            # Actual prediction logic
+            input_features = np.array([[humidity, moisture, light_intensity]])
+            predicted_crop = model.predict(input_features)  # Make prediction using the model
 
             # Display predicted crop in selected language
             if language == "Hindi":
@@ -138,5 +158,6 @@ def load_crop_instructions():
     }
     return crop_instructions
 
+# Run the main function
 if __name__ == "__main__":
     main()
